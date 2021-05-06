@@ -1,0 +1,101 @@
+/*  css reset */
+*{box-sizing: border-box;margin: 0;padding: 0;}
+*:before,*:after{box-sizing: border-box;}
+ul,ol{
+    list-style: none;
+}
+
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+/*  style */
+body{
+    background: #eee;
+}
+.globalHeader{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.globalHeader > input{
+    width: 100%;
+    margin-right: 10px;
+    height: 40px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0 10px;
+}   
+.globalHeader > button{
+    white-space: nowrap;
+    border-radius: 4px;
+    padding: 0 28px;
+    border: none;
+    font-size: 16px;
+    background: #0282B9;
+    color: white;
+}
+
+.globalMain{
+}
+.siteList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px;
+
+
+}
+
+.site{
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    margin-bottom: 10px;
+    padding: 20px 0;
+
+
+}
+.logo{
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+}
+.link{
+    font-size: 14px;
+    margin-top: 4px;
+}
+.addButton{
+    width: 160px; 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    padding: 20px 0;
+}
+.icon-Wrapper{
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon{
+  width: 56px;
+  height: 56px; 
+}
+
+.text{
+    font-size: 14px;
+    margin-top: 4px;
+}
