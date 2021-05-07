@@ -1,23 +1,31 @@
 // 新增网址，使用jquery，在最后一个li标签前使用insertBefore方法插入；
 const $siteList = $('.siteList')
 const $lastLi = $siteList.find('li.last')
+const x = localStorage.getItem('x')
+const xObject = JSON.parse(x)
 
-const hashMap = [
+const hashMap = xObject || [
     { logo:'M',logoType:'text',url:'https://developer.mozilla.org/zh-CN/'} ,
     { logo:'./images/bilibili.png',logoType:'image',url:'https://www.bilibili.com/'} ,
     { logo:'G',logoType:'text',url:'https://www.google.com.hk/'} ,
 ]
 
-hashMap.forEach(node=>{
-    const $li = $(`<li>
-        <a href="${node.url}">
-            <div class="site">
-                <div class="logo">${node.logo[0]}</div>
-                <div class="link">${node.url}</div>
-            </div>
-        </a>    
-    </li>`).insertBefore($lastLi)
-})
+const render = ()=>{
+    $siteList.find('li:not(.last)').remove()
+    hashMap.forEach(node=>{
+        const $li = $(`<li>
+            <a href="${node.url}">
+                <div class="site">
+                    <div class="logo">${node.logo[0]}</div>
+                    <div class="link">${node.url}</div>
+                </div>
+            </a>    
+        </li>`).insertBefore($lastLi)
+    })
+}
+
+render()
+
 
 $('.addButton')
     .on('click',()=>{
@@ -31,15 +39,9 @@ $('.addButton')
             logoType:"text",
             url:url
         })
-        $siteList.find('li:not(.last)').remove()
-        hashMap.forEach(node=>{
-            const $li = $(`<li>
-                <a href="${node.url}">
-                    <div class="site">
-                        <div class="logo">${node.logo[0]}</div>
-                        <div class="link">${node.url}</div>
-                    </div>
-                </a>    
-            </li>`).insertBefore($lastLi)
-        })
-    })
+        render()
+    });
+    window.onbeforeunload = ()=>{
+        const string = JSON.stringify(hashMap)
+        localStorage.setItem('x',string)
+    }
