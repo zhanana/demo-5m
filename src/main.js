@@ -9,20 +9,39 @@ const hashMap = xObject || [
     { logo:'./images/bilibili.png',logoType:'image',url:'https://www.bilibili.com/'} ,
     { logo:'G',logoType:'text',url:'https://www.google.com.hk/'} ,
 ]
-
+// 简化显示的网址信息函数
+const simplifyUrl = (url)=>{
+    return url.replace('https://','')
+    .replace('http://' ,'')
+    .replace('www.','')
+    .replace(/\/.*/,'')//正则表达式删除/后面的内容
+}
 const render = ()=>{
     $siteList.find('li:not(.last)').remove()
-    hashMap.forEach(node=>{
+    hashMap.forEach((node,index)=>{
         const $li = $(`<li>
-            <a href="${node.url}">
                 <div class="site">
                     <div class="logo">${node.logo[0]}</div>
-                    <div class="link">${node.url}</div>
+                    <div class="link">${simplifyUrl(node.url)}</div>
+                    <div class="close">
+                    <svg class="icon-D" aria-hidden="true">
+                        <use xlink:href="#icon-Close"></use>
+                    </svg>
+                    </div>
                 </div>
-            </a>    
         </li>`).insertBefore($lastLi)
+        $li.on('click',()=>{
+            window.open(node.url)
+        })
+        $li.on('click','.close',(e)=>{
+            e.stopPropagation()//阻止冒泡
+            console.log(hashMap)
+            hashMap.splice(index,1)
+            render()
+        })
     })
 }
+
 
 render()
 
@@ -35,7 +54,7 @@ $('.addButton')
         }
         console.log(url)
         hashMap.push({
-            logo:url[0],
+            logo:simplifyUrl(url)[0].toUpperCase(),
             logoType:"text",
             url:url
         })
@@ -45,3 +64,11 @@ $('.addButton')
         const string = JSON.stringify(hashMap)
         localStorage.setItem('x',string)
     }
+    $(document).on('keypress',(e)=>{
+        const {key} = e
+        for (let i=0; i<hashMap.length;i++){
+            if (hashMap[i].logo.toLowerCase() === key){
+                window.open(hashMap[i].url)
+            }
+        }
+    })
