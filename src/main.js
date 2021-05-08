@@ -4,10 +4,10 @@ const $lastLi = $siteList.find('li.last')
 const x = localStorage.getItem('x')
 const xObject = JSON.parse(x)
 
-const hashMap = xObject || [
+const hashMap = xObject ||  [
     { logo:'M',logoType:'text',url:'https://developer.mozilla.org/zh-CN/'} ,
     { logo:'B',logoType:'text',url:'https://www.bilibili.com/'} ,
-    { logo:'G',logoType:'text',url:'https://www.google.com.hk/'} ,
+    { logo:'G',logoType:'text',url:'https://www.google.com.hk/'} 
 ]
 // 简化显示的网址信息函数
 const simplifyUrl = (url)=>{
