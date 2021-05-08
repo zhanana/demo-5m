@@ -6,7 +6,7 @@ const xObject = JSON.parse(x)
 
 const hashMap = xObject || [
     { logo:'M',logoType:'text',url:'https://developer.mozilla.org/zh-CN/'} ,
-    { logo:'./images/bilibili.png',logoType:'image',url:'https://www.bilibili.com/'} ,
+    { logo:'B',logoType:'text',url:'https://www.bilibili.com/'} ,
     { logo:'G',logoType:'text',url:'https://www.google.com.hk/'} ,
 ]
 // 简化显示的网址信息函数
